@@ -8,10 +8,12 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import UserApproval from "../userPopup/UserApproval";
 import { GenericRecord } from "../../interface/api";
 import CircularProgress from "@mui/material/CircularProgress";
+// import AddBatchCode from "../userPopup/AddBatchCode";
+import AddBatchCodeModal from "../userPopup/AddBatchCodeModal";
 
 interface ViewButtonRendererProps {
   props: any;
-  pageType: "pendingPage" | "rejectedPage" | "approvePage";
+  pageType: "pendingPage" | "rejectedPage" | "approvePage" | "AddBatchCode";
 }
 
 /**
@@ -34,6 +36,7 @@ const ViewButtonRenderer: React.FC<ViewButtonRendererProps> = ({
   const [data, setData] = useState<GenericRecord>({});
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [openAddBatch, setOpenAddBatch] = useState(false);
 
   const id = props?.data?.id;
   const mediaType = getMediaTypeFromSrc(props?.data?.url);
@@ -68,6 +71,7 @@ const ViewButtonRenderer: React.FC<ViewButtonRendererProps> = ({
             {mediaType === "pdf" && <PictureAsPdfIcon fontSize="small" />}
             {mediaType === "video" && <VideoCameraBackIcon fontSize="small" />}
             {pageType === "rejectedPage" ? "Review" : "View"}
+            {pageType === "AddBatchCode" ? "Review" : "View"}
           </>
         )}
       </button>
@@ -78,6 +82,11 @@ const ViewButtonRenderer: React.FC<ViewButtonRendererProps> = ({
         mediaSrc={data?.url as string}
         userData={data}
         pageType={pageType}
+        userId={id}
+      />
+      <AddBatchCodeModal
+        open={openAddBatch}
+        onClose={() => setOpenAddBatch(false)}
         userId={id}
       />
     </>

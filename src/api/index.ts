@@ -57,7 +57,7 @@ class APIS {
   }
 
   async dashboardCount(): Promise<DashboardCountResponse> {
-    return authorisedApiCall("/admin/getAppData", {}, "GET")
+    return authorisedApiCall("/admin/getCodeData", {}, "GET")
       .then(fetchHandler)
       .then(responseHelper)
       .catch(defaultCatch)
@@ -65,7 +65,7 @@ class APIS {
   }
 
   async getPendingData(): Promise<GetAnyDataResponse> {
-    return authorisedApiCall("/admin/getPendingUsers", {}, "GET")
+    return authorisedApiCall("/admin/getCodeInfo", {}, "GET")
       .then(fetchHandler)
       .then(responseHelper)
       .catch(defaultCatch)
@@ -109,21 +109,25 @@ class APIS {
       .finally();
   }
 
+  async updateCodeStatus(code: string): Promise<BaseResponse> {
+    return authorisedApiCall(`/admin/updateCodeStatus/${code}`, null, "GET")
+      .then(fetchHandler)
+      .then(responseHelper)
+      .catch(defaultCatch);
+  }
+
   async userAction(
-    endpoint: "review" | "reject" | "approve",
-    userId: number,
+    endpoint: "addCode",
     payload: Record<string, any> = {}
   ): Promise<BaseResponse> {
     const finalPayload = {
-      userId,
       ...payload,
     };
 
     return authorisedApiCall(`/admin/${endpoint}`, finalPayload)
       .then(fetchHandler)
       .then(responseHelper)
-      .catch(defaultCatch)
-      .finally();
+      .catch(defaultCatch);
   }
 }
 const API = APIS.getInstance();

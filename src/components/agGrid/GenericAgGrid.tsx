@@ -25,6 +25,8 @@ import CustomNoRowsOverlay from "../../components/skelitonTable/CustomNoRowsOver
 import { store } from "../../store/store";
 import { setIsRefreshed } from "../../store/slices/userSlice";
 import DynamicLottie from "../../assets/lottie/DynamicLottie";
+import { Add } from "@mui/icons-material";
+import AddBatchCodeModal from "../userPopup/AddBatchCodeModal";
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
@@ -57,6 +59,7 @@ const GenericAgGrid: React.FC<GenericAgGridProps> = ({
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [openAddBatch, setOpenAddBatch] = useState(false); // AddBatchCode
 
   const defaultColDef = useMemo(
     () => ({
@@ -133,12 +136,32 @@ const GenericAgGrid: React.FC<GenericAgGridProps> = ({
             disabled={!rowData}
             onInput={onFilterTextBoxChanged}
           />
-          <button
-            className="add-campaign-button download"
-            onClick={onBtnExport}
-          >
-            <DynamicLottie type="download" shouldPlay />
-          </button>
+          <div className="button-wrapper">
+            {/* <button
+              className="add-campaign-button download"
+              onClick={onBtnExport}
+            >
+              <DynamicLottie type="download" shouldPlay />
+            </button> */}
+            <button
+              style={{
+                marginLeft: "20px",
+                padding: "20px",
+                fontSize: "18px",
+                background: "#f05f5f",
+              }}
+              className="add-campaign-button "
+              onClick={() => setOpenAddBatch(true)}
+            >
+              Add Batch Code
+            </button>
+          </div>
+
+          <AddBatchCodeModal
+            open={openAddBatch}
+            onClose={() => setOpenAddBatch(false)}
+            userId={123} // replace with real ID
+          />
         </div>
         <div style={gridStyle} className="ag-theme-alpine">
           <AgGridReact

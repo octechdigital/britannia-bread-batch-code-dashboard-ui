@@ -33,7 +33,7 @@ interface UserApprovalProps {
   onClose: () => void;
   mediaSrc: string;
   userData: GenericRecord;
-  pageType: "pendingPage" | "rejectedPage" | "approvePage";
+  pageType: "pendingPage" | "rejectedPage" | "approvePage" | "AddBatchCode";
   userId: number;
 }
 

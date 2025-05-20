@@ -1,8 +1,8 @@
 export const ROUTES = {
   HOME_PAGE: "/",
   PENDING: "/dashboard/",
-  APPROVED: "/dashboard/approved",
-  REJECTED: "/dashboard/rejected",
+  
+  
 };
 
 export enum LANGUAGE {

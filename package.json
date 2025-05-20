@@ -23,6 +23,7 @@
     "@svgr/rollup": "^8.1.0",
     "@types/crypto-js": "^4.2.2",
     "ag-grid-react": "^33.0.3",
+    "axios": "^1.9.0",
     "crypto-js": "^4.2.0",
     "jssha": "^3.3.1",
     "lexical": "^0.23.1",

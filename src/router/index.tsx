@@ -25,14 +25,14 @@ export const router = createBrowserRouter(
           path: ROUTES.PENDING,
           element: <Pending />,
         },
-        {
-          path: ROUTES.APPROVED,
-          element: <Offers />,
-        },
-        {
-          path: ROUTES.REJECTED,
-          element: <Rejected />,
-        },
+        // {
+        //   path: ROUTES.APPROVED,
+        //   element: <Offers />,
+        // },
+        // {
+        //   path: ROUTES.REJECTED,
+        //   element: <Rejected />,
+        // },
       ],
     },
   ],

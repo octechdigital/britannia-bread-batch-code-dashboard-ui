@@ -45,20 +45,20 @@ const SideMenu = () => {
 
   const mainMenu: MenuItemProp[] = [
     {
-      title: "Pending",
+      title: "Dashboard",
       route: ROUTES.PENDING,
       icon: "pending",
     },
-    {
-      title: "Approved",
-      route: ROUTES.APPROVED,
-      icon: "approved",
-    },
-    {
-      title: "Rejected",
-      route: ROUTES.REJECTED,
-      icon: "rejected",
-    },
+    // {
+    //   title: "Approved",
+    //   route: ROUTES.APPROVED,
+    //   icon: "approved",
+    // },
+    // {
+    //   title: "Rejected",
+    //   route: ROUTES.REJECTED,
+    //   icon: "rejected",
+    // },
   ];
 
   return (
