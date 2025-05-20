@@ -76,14 +76,14 @@ const ViewButtonRenderer: React.FC<ViewButtonRendererProps> = ({
         )}
       </button>
 
-      <UserApproval
+      {/* <UserApproval
         open={open}
         onClose={() => setOpen(false)}
         mediaSrc={data?.url as string}
         userData={data}
         pageType={pageType}
         userId={id}
-      />
+      /> */}
       <AddBatchCodeModal
         open={openAddBatch}
         onClose={() => setOpenAddBatch(false)}

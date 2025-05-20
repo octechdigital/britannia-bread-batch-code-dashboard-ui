@@ -65,7 +65,7 @@ const Pending: React.FC = () => {
         open={popupOpen}
         onClose={handlePopupClose}
         rowData={selectedRow}
-        isActive={selectedRow?.status === "active"} // assuming status is "active"/"inactive"
+        isActive={selectedRow?.status === "Active"} // assuming status is "active"/"inactive"
         onConfirm={(isActivating, rowData) => {
           return API.updateCodeStatus(rowData.code)
             .then(() => {

@@ -15,6 +15,8 @@ interface Props {
   onClose: () => void;
   rowData?: any; // expected to include status or isActive flag
   onConfirm: (isActivating: boolean, rowData: any) => void;
+  isActive?: boolean; // expected to be passed from the parent component
+  value?: number; // expected to be passed from the parent component
 }
 
 const ActiveInactivePopup: React.FC<Props> = ({
@@ -22,12 +24,13 @@ const ActiveInactivePopup: React.FC<Props> = ({
   onClose,
   rowData,
   onConfirm,
-  
+  isActive,
 }) => {
   const [loading, setLoading] = useState(false);
-
-  const isActive = rowData?.isActive ?? true;
+  // const isActive = rowData?.isActive ?? false;
   const typeLabel = rowData?.type || "item";
+  console.log("rowData", rowData);
+  console.log("isActive", isActive);
 
 
   const handleConfirm = async () => {

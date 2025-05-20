@@ -3,9 +3,9 @@ import { ROUTES } from "../lib/consts.ts";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout.tsx";
 import Login from "../pages/login/Login.tsx";
 import Pending from "../pages/dashboard/Pending.tsx";
-import Offers from "../pages/dashboard/Approve.tsx";
+// import Offers from "../pages/dashboard/Approve.tsx";
 import PrivateRoute from "../helpers/PrivateRoute.tsx";
-import Rejected from "../pages/dashboard/Rejected.tsx";
+// import Rejected from "../pages/dashboard/Rejected.tsx";
 
 export const router = createBrowserRouter(
   [

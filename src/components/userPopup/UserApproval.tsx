@@ -87,40 +87,40 @@ const UserApproval: React.FC<UserApprovalProps> = ({
 
   const closeModal = () => finishInteraction();
 
-  const handleApprove = (reason?: string) => {
-    const payload: Record<string, string> = {};
-    if (reason) payload.approveReason = reason;
-    API.userAction("approve", userId, payload)
-      .then(() => {
-        finishInteraction();
-        dispatch(setIsRefreshed(true));
-        dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
-        showToast("success", "User approved successfully !");
-      })
-      .catch(console.log);
-  };
+  // const handleApprove = (reason?: string) => {
+  //   const payload: Record<string, string> = {};
+  //   if (reason) payload.approveReason = reason;
+  //   API.userAction("approve", userId, payload)
+  //     .then(() => {
+  //       finishInteraction();
+  //       dispatch(setIsRefreshed(true));
+  //       dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
+  //       showToast("success", "User approved successfully !");
+  //     })
+  //     .catch(console.log);
+  // };
 
-  const handleReject = (finalReason: string) => {
-    API.userAction("reject", userId, { rejectedReason: finalReason })
-      .then(() => {
-        finishInteraction();
-        dispatch(setIsRefreshed(true));
-        dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
-        showToast("success", "User rejected successfully !");
-      })
-      .catch(console.log);
-  };
+  // const handleReject = (finalReason: string) => {
+  //   API.userAction("reject", userId, { rejectedReason: finalReason })
+  //     .then(() => {
+  //       finishInteraction();
+  //       dispatch(setIsRefreshed(true));
+  //       dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
+  //       showToast("success", "User rejected successfully !");
+  //     })
+  //     .catch(console.log);
+  // };
 
-  const handleReview = () => {
-    API.userAction("review", userId)
-      .then(() => {
-        finishInteraction();
-        dispatch(setIsRefreshed(true));
-        dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
-        showToast("success", "User moved to pending section !");
-      })
-      .catch(console.log);
-  };
+  // const handleReview = () => {
+  //   API.userAction("review", userId)
+  //     .then(() => {
+  //       finishInteraction();
+  //       dispatch(setIsRefreshed(true));
+  //       dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
+  //       showToast("success", "User moved to pending section !");
+  //     })
+  //     .catch(console.log);
+  // };
 
   const renderMedia = () => {
     const style = {
@@ -277,7 +277,7 @@ const UserApproval: React.FC<UserApprovalProps> = ({
                         </Typography>
                         <DialogActions>
                           <Button onClick={closeModal}>Cancel</Button>
-                          <Button
+                          {/* <Button
                             onClick={() =>
                               handleApprove(
                                 selectedApprovalReason === "Others"
@@ -296,7 +296,7 @@ const UserApproval: React.FC<UserApprovalProps> = ({
                             }
                           >
                             Confirm
-                          </Button>
+                          </Button> */}
                         </DialogActions>
                       </Box>
                     </>
@@ -336,7 +336,7 @@ const UserApproval: React.FC<UserApprovalProps> = ({
 
                       <DialogActions>
                         <Button onClick={closeModal}>Cancel</Button>
-                        <Button
+                        {/* <Button
                           variant="contained"
                           color="error"
                           onClick={() =>
@@ -352,7 +352,7 @@ const UserApproval: React.FC<UserApprovalProps> = ({
                           }
                         >
                           Submit
-                        </Button>
+                        </Button> */}
                       </DialogActions>
                     </Box>
                   )}
@@ -364,13 +364,13 @@ const UserApproval: React.FC<UserApprovalProps> = ({
                   <Typography>Are you sure you want to review?</Typography>
                   <DialogActions>
                     <Button onClick={closeModal}>Cancel</Button>
-                    <Button
+                    {/* <Button
                       onClick={handleReview}
                       variant="contained"
                       color="primary"
                     >
                       Review
-                    </Button>
+                    </Button> */}
                   </DialogActions>
                 </Box>
               )}
