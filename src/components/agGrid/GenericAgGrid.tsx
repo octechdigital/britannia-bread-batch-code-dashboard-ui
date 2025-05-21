@@ -27,6 +27,7 @@ import { setIsRefreshed } from "../../store/slices/userSlice";
 import DynamicLottie from "../../assets/lottie/DynamicLottie";
 import { Add } from "@mui/icons-material";
 import AddBatchCodeModal from "../userPopup/AddBatchCodeModal";
+import AddIcon from '@mui/icons-material/Add';
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
@@ -137,23 +138,24 @@ const GenericAgGrid: React.FC<GenericAgGridProps> = ({
             onInput={onFilterTextBoxChanged}
           />
           <div className="button-wrapper">
-            {/* <button
+            <button
+              style={{
+                fontSize: "18px",
+              }}
               className="add-campaign-button download"
               onClick={onBtnExport}
             >
-              <DynamicLottie type="download" shouldPlay />
-            </button> */}
+              <DynamicLottie type="download" shouldPlay  />
+            </button>
             <button
               style={{
-                marginLeft: "20px",
-                padding: "20px",
-                fontSize: "18px",
-                background: "#f05f5f",
+                fontSize: "15px",
+                
               }}
               className="add-campaign-button "
               onClick={() => setOpenAddBatch(true)}
             >
-              Add Batch Code
+              <AddIcon sx={{ fontSize: "18px" }} /> Add Batch Code
             </button>
           </div>
 

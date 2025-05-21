@@ -88,20 +88,19 @@ const handleSubmit = async () => {
 
         <Typography
           sx={{
-            mb: 2,
             mt: 2,
-            backgroundColor: "lightgray",
             padding: "10px",
             borderRadius: "8px",
             width: "100%",
             color: "#000",
+            fontSize: "20px",
           }}
-          variant="h5"
+          
           fontWeight="bold"
           textAlign="center"
           gutterBottom
         >
-          Britannia Breads Batch Code
+          Britannia Breads – Batch Code Entry
         </Typography>
 
         <Typography mt={5} fontWeight="bold" textAlign="start" gutterBottom>

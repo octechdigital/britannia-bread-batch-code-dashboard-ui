@@ -59,7 +59,7 @@ const ActiveInactivePopup: React.FC<Props> = ({
             <strong>{typeLabel}</strong>?
           </Typography>
           <Typography variant="body2" color="text.secondary" textAlign="center">
-            Once confirmed, this action cannot be undone.
+            Once confirmed, this action will be executed.
           </Typography>
         </Box>
       </DialogContent>
