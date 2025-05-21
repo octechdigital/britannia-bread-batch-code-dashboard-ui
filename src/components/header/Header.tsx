@@ -8,12 +8,17 @@ import { Skeleton, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { AppDispatch } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { setIsRefreshed } from "../../store/slices/userSlice";
 
 const Header = () => {
   const [countData, setCountData] = useState<GenericRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [title, setTitle] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+
   const isNewData = useSelector(
     (state: RootState) => state.user.isHeaderRefresh
   );
@@ -25,6 +30,8 @@ const Header = () => {
       .then((res) => {
         setCountData(res.data);
         setTitle(res.title);
+        dispatch(setIsRefreshed(true));
+        console.log("--------------------------New Data--------------------------");
       })
       .catch(() => {
         setError("Failed to load data");

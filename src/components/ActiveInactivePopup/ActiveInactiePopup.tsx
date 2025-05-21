@@ -9,6 +9,10 @@ import {
   Box,
 } from "@mui/material";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
+import { setIsHeaderRefreshed, setIsRefreshed } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { useAppSelector } from "../../store/hooks";
 
 interface Props {
   open: boolean;
@@ -27,8 +31,10 @@ const ActiveInactivePopup: React.FC<Props> = ({
   isActive,
 }) => {
   const [loading, setLoading] = useState(false);
+  const isHeaderRefresh = useAppSelector((state) => state.user.isHeaderRefresh);
   // const isActive = rowData?.isActive ?? false;
   const typeLabel = rowData?.type || "item";
+  const dispatch = useDispatch<AppDispatch>();
   console.log("rowData", rowData);
   console.log("isActive", isActive);
 
@@ -37,6 +43,8 @@ const ActiveInactivePopup: React.FC<Props> = ({
     setLoading(true);
     try {
       await onConfirm(!isActive, rowData);
+      dispatch(setIsRefreshed(true));
+      dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
       onClose();
     } catch (error) {
       console.error("Action failed:", error);

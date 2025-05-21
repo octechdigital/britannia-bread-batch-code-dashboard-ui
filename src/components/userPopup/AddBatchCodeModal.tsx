@@ -11,11 +11,14 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
-import { setIsRefreshed } from "../../store/slices/userSlice";
+import { setIsHeaderRefreshed, setIsRefreshed } from "../../store/slices/userSlice";
 import { showToast } from "../../lib/utils";
 import API from "../../api";
 import { useGlobalLoaderContext } from "../../helpers/GlobalLoader";
 import "./AddBatchCode.scss";
+import { useAppSelector } from "../../store/hooks";
+
+
 
 interface AddBatchCodeModalProps {
   open: boolean;
@@ -30,6 +33,7 @@ const AddBatchCodeModal: React.FC<AddBatchCodeModalProps> = ({
   const [batchCode, setBatchCode] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const { showLoader, hideLoader } = useGlobalLoaderContext();
+  const isHeaderRefresh = useAppSelector((state) => state.user.isHeaderRefresh);
 
   const isValidBatchCode = /^[a-zA-Z0-9]{7}$/.test(batchCode);
 
@@ -39,25 +43,17 @@ const handleSubmit = async () => {
   showLoader("Submitting batch code...");
 
   try {
-    // Make the API call to add the batch code
     await API.userAction("addCode",  { code: batchCode });
-
-    // Update the Redux state to trigger data refresh
     dispatch(setIsRefreshed(true));
-
-    // Show success message
+    dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
     showToast("success", "Batch code added successfully!");
-
-    // Reset and close the modal
     handleClose();
   } catch (error: any) {
-    // Handle errors with fallback messaging
     showToast(
       "error",
       error?.response?.data?.message || "Something went wrong"
     );
   } finally {
-    // Always hide loader
     hideLoader();
   }
 };
