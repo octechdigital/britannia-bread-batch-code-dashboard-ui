@@ -29,7 +29,7 @@ const Pending: React.FC = () => {
 
   const pendingColumnDefs = [
     { headerName: "Batch Code", field: "code" },
-    { headerName: "No of Used", field: "usedCount" },
+    // { headerName: "No of Used", field: "usedCount" },
     { headerName: "Created Date", field: "date" },
     {
       headerName: "Action",
