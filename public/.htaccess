@@ -2,9 +2,9 @@ SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /britannia-breads-batch-code-dashboard
+  RewriteBase /britannia_breads/admin
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
-  RewriteRule . /britannia-breads-batch-code-dashboard/index.html [L]
+  RewriteRule . /britannia_breads/admin/index.html [L]
 </IfModule>
