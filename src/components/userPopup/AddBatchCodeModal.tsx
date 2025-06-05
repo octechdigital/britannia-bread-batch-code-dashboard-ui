@@ -85,11 +85,16 @@ const AddBatchCodeModal: React.FC<AddBatchCodeModalProps> = ({
       const text = await file.text();
       const lines = text
         .split(/\r?\n/)
-        .map((line) => line.trim().replace(/^"|"$/g, "").toUpperCase()) // Remove surrounding quotes
-        .filter((line) => line && line !== "CODE"); // Remove empty and header
+        .map((line) => line.trim().replace(/^"|"$/g, "").toUpperCase())
+        .filter((line) => line && line !== "CODE");
 
       if (lines.length === 0) {
         showToast("error", "No valid batch codes found in the CSV.");
+        return;
+      }
+
+      if (lines.length > 200) {
+        showToast("error", "You can upload a maximum of 200 batch codes only.");
         return;
       }
 
@@ -100,34 +105,33 @@ const AddBatchCodeModal: React.FC<AddBatchCodeModalProps> = ({
     }
   };
 
-const handleSubmit = async () => {
-  showLoader("Submitting batch code(s)...");
+  const handleSubmit = async () => {
+    showLoader("Submitting batch code(s)...");
 
-  try {
-    const payload =
-      mode === "manual" ? { code: batchCode } : { codes: csvCodes };
+    try {
+      const payload =
+        mode === "manual" ? { code: batchCode } : { codes: csvCodes };
 
-    const response = await API.userAction<AddCodeResponse>("addCode", payload);
-    const existingCodes = response.exist ?? [];
+      const response = await API.userAction<AddCodeResponse>("addCode", payload);
+      const existingCodes = response.exist ?? [];
 
-    dispatch(setIsRefreshed(true));
-    dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
+      dispatch(setIsRefreshed(true));
+      dispatch(setIsHeaderRefreshed(!isHeaderRefresh));
 
-    if (existingCodes.length > 0) {
-      const formattedCodes = existingCodes.join(", ");
-      showToast("exist", `The following code(s) already exist:\n${formattedCodes}`);
-    } else {
-      showToast("success", response.message || "Batch code(s) added successfully!");
+      if (existingCodes.length > 0) {
+        const formattedCodes = existingCodes.join(", ");
+        showToast("exist", `The following code(s) already exist:\n${formattedCodes}`);
+      } else {
+        showToast("success", response.message || "Batch code(s) added successfully!");
+      }
+
+      handleClose();
+    } catch (error: any) {
+      showToast("error", error?.response?.data?.message || "Something went wrong");
+    } finally {
+      hideLoader();
     }
-
-    handleClose();
-  } catch (error: any) {
-    showToast("error", error?.response?.data?.message || "Something went wrong");
-  } finally {
-    hideLoader();
-  }
-};
-
+  };
 
   const handleClose = () => {
     setBatchCode("");
