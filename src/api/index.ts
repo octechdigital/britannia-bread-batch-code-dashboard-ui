@@ -116,13 +116,12 @@ class APIS {
       .catch(defaultCatch);
   }
 
-  async userAction(
+ // In your API file
+  async userAction<T = BaseResponse>(
     endpoint: "addCode",
     payload: Record<string, any> = {}
-  ): Promise<BaseResponse> {
-    const finalPayload = {
-      ...payload,
-    };
+  ): Promise<T> {
+    const finalPayload = { ...payload };
 
     return authorisedApiCall(`/admin/${endpoint}`, finalPayload)
       .then(fetchHandler)

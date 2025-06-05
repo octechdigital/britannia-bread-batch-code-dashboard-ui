@@ -337,7 +337,7 @@ export const formats = [
 ];
 
 export const showToast = (
-  type: "success" | "error",
+  type: "success" | "error" | "exist",
   message: string,
   duration = 3000,
   position:
@@ -355,6 +355,16 @@ export const showToast = (
     toast.success(message, options);
   } else if (type === "error") {
     toast.error(message, options);
+  } else if (type === "exist") {
+    toast(message, {
+      ...options,
+      icon: "✅",
+      style: {
+        background: "#fff",
+        color: "#000",
+        border: "1px solid #000",
+      },
+    });
   }
 };
 

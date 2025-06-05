@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface BaseResponse {
   status: number;
   message: string;
@@ -21,6 +22,7 @@ export interface DashboardCountResponse extends BaseResponse {
 export interface GetAnyDataResponse extends BaseResponse {
   data: {
     userList: GenericRecord[];
+    exist?: string[];
   };
 }
 export interface GetUserDataResponse extends BaseResponse {
@@ -29,6 +31,10 @@ export interface GetUserDataResponse extends BaseResponse {
 
 export interface GetRejectReasonResponse extends BaseResponse {
   data: GenericRecord[];
+}
+
+export interface AddCodeResponse extends BaseResponse {
+  exist?: string[];
 }
 
 // export interface SendCreateCampaignData {}
